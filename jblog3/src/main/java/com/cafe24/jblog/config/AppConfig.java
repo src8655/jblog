@@ -1,4 +1,4 @@
-package com.cafe24.mysite.config;
+package com.cafe24.jblog.config;
 
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -10,7 +10,7 @@ import com.cafe24.config.app.MybatisConfig;
 
 @Configuration
 @EnableAspectJAutoProxy
-@ComponentScan({"com.cafe24.mysite.service","com.cafe24.mysite.repository"})
+@ComponentScan({"com.cafe24.jblog.service","com.cafe24.jblog.repository"})
 @Import({DBConfig.class, MybatisConfig.class})
 public class AppConfig {
 

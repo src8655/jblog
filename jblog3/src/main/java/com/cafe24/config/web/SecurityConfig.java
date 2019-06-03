@@ -64,7 +64,8 @@ public class SecurityConfig extends WebMvcConfigurerAdapter {
 		registry
 		.addInterceptor(authInterceptor())
 		.addPathPatterns("/*/admin/**");
-
+		
+		
 		registry
 		.addInterceptor(blogInterceptor())
 		.addPathPatterns("/**")

@@ -1,4 +1,4 @@
-package com.cafe24.mysite.config;
+package com.cafe24.jblog.config;
 
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -19,7 +19,7 @@ import com.cafe24.config.web.SecurityConfig;
 @Configuration
 @EnableWebMvc
 @EnableAspectJAutoProxy
-@ComponentScan({"com.cafe24.mysite.controller","com.cafe24.mysite.controller.api"})
+@ComponentScan({"com.cafe24.jblog.controller","com.cafe24.jblog.controller.api"})
 @Import({MVCConfig.class, SecurityConfig.class, FileuploadConfig.class})
 public class WebConfig{
 	
