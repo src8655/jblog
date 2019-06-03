@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="post">
+
+	<select id="countByCategoryNo" parameterType="long" resultType="Integer">
+		select count(*) from post where category_no=#{no}
+	</select>
+	
+	<insert id="insert" parameterType="postvo" useGeneratedKeys="true" keyProperty="no">
+		insert into post values(
+		null,
+		#{title},
+		#{content},
+		now(),
+		#{categoryNo}
+		)
+	</insert>
+	
+	<select id="getPostByNone" parameterType="String" resultType="postvo">
+		select
+		a.no,
+		a.title,
+		a.content,
+		DATE_FORMAT(a.reg_date,'%Y-%m-%d') as regDate,
+		a.category_no as categoryNo,
+		b.name as categoryName
+		from post a, category b
+		where a.category_no=b.no
+		and b.blog_id=#{blogId}
+		order by no desc
+		limit 0,1
+	</select>
+	
+	<select id="getPostByNo1" parameterType="java.util.Map" resultType="postvo">
+		select
+		a.no,
+		a.title,
+		a.content,
+		DATE_FORMAT(a.reg_date,'%Y-%m-%d') as regDate,
+		a.category_no as categoryNo,
+		b.name as categoryName
+		from post a, category b
+		where a.category_no=b.no
+		and b.blog_id=#{blogId}
+		and a.category_no=#{pathNo1}
+		order by no desc
+		limit 0,1
+	</select>
+	
+	<select id="getPostByNo1No2" parameterType="java.util.Map" resultType="postvo">
+		select
+		a.no,
+		a.title,
+		a.content,
+		DATE_FORMAT(a.reg_date,'%Y-%m-%d') as regDate,
+		a.category_no as categoryNo,
+		b.name as categoryName
+		from post a, category b
+		where a.category_no=b.no
+		and b.blog_id=#{blogId}
+		and a.category_no=#{pathNo1}
+		and a.no=#{pathNo2}
+	</select>
+	
+	<select id="getPostListNo1" parameterType="java.util.Map" resultType="postvo">
+		select
+		a.no,
+		a.title,
+		DATE_FORMAT(a.reg_date,'%Y-%m-%d') as regDate,
+		a.category_no as categoryNo,
+		b.name as categoryName
+		from post a, category b
+		where a.category_no=b.no
+		and b.blog_id=#{blogId}
+		and a.category_no=#{pathNo1}
+		order by no desc
+		limit #{startNum}, #{boardCnt}
+	</select>
+	
+	<select id="getPostList" parameterType="java.util.Map" resultType="postvo">
+		select
+		a.no,
+		a.title,
+		DATE_FORMAT(a.reg_date,'%Y-%m-%d') as regDate,
+		a.category_no as categoryNo,
+		b.name as categoryName
+		from post a, category b
+		where a.category_no=b.no
+		and b.blog_id=#{blogId}
+		order by no desc
+		limit #{startNum}, #{boardCnt}
+	</select>
+	
+	
+	<select id="countPostListNo1" parameterType="java.util.Map" resultType="Integer">
+		select
+		count(a.no)
+		from post a, category b
+		where a.category_no=b.no
+		and b.blog_id=#{blogId}
+		and a.category_no=#{pathNo1}
+	</select>
+	
+	<select id="countPostList" parameterType="String" resultType="Integer">
+		select
+		count(a.no)
+		from post a, category b
+		where a.category_no=b.no
+		and b.blog_id=#{blogId}
+	</select>
+	
+	<!-- 내 현재 위치 -->
+	<select id="countPositionNo2" parameterType="java.util.Map" resultType="Integer">
+		select aa.nn as num
+		from
+		(SELECT @rownum:=@rownum+1 as nn, a.no
+		FROM post a, category b, (SELECT @rownum:=0) TMP
+		where a.category_no=b.no
+		and b.blog_id=#{blogId}
+		and a.category_no=#{pathNo1}
+		order by no desc) aa
+		where no=#{no}
+	</select>
+	
+	<delete id="delete" parameterType="java.util.Map">
+		delete from post where category_no=#{pathNo1} and no=#{pathNo2}
+	</delete>
+	
+	<select id="getByNo" parameterType="java.util.Map" resultType="postvo">
+		select no, title, content, category_no as categoryNo
+		from post
+		where no=#{no}
+	</select>
+	
+	<update id="update" parameterType="postvo">
+		update post set
+		title=#{title},
+		content=#{content},
+		category_no=#{categoryNo}
+		where no=#{no}
+	</update>
+	
+</mapper>
