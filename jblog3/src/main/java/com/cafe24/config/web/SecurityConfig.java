@@ -61,6 +61,7 @@ public class SecurityConfig extends WebMvcConfigurerAdapter {
 		.addInterceptor(authLogoutIterceptor())
 		.addPathPatterns("/user/logout");
 
+
 		registry
 		.addInterceptor(authInterceptor())
 		.addPathPatterns("/*/admin/**");
@@ -74,6 +75,7 @@ public class SecurityConfig extends WebMvcConfigurerAdapter {
 		.excludePathPatterns("/user/**")
 		.excludePathPatterns("/*/admin/**")
 		.excludePathPatterns("/assets/**");
+		
 		
 	}
 }
