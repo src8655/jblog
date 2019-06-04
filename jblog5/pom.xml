@@ -7,7 +7,7 @@
 
 	<parent>
 		<groupId>com.cafe24</groupId>
-		<artifactId>springboot</artifactId>
+		<artifactId>jblog</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 	</parent>
 	
