@@ -8,6 +8,7 @@ import org.springframework.web.method.support.HandlerMethodArgumentResolver;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 import org.springframework.web.servlet.config.annotation.InterceptorRegistry;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
+import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 import com.cafe24.jblog.interceptor.BlogInterceptor;
 import com.cafe24.security.AuthInterceptor;
@@ -31,7 +32,7 @@ public class SecurityConfig extends WebMvcConfigurerAdapter {
 		argumentResolvers.add(authUserHandlerMethodArgumentResolver());
 	}
 
-	
+
 	//
 	// Interceptor
 	//

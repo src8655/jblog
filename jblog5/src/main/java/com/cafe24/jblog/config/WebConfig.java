@@ -33,7 +33,7 @@ import com.cafe24.security.AuthUserHandlerMethodArgumentResolver;
 import com.fasterxml.jackson.module.paramnames.ParameterNamesModule;
 
 @Configuration
-public class WebConfig implements WebMvcConfigurer{
+public class WebConfig implements WebMvcConfigurer {
 	
 
 	//

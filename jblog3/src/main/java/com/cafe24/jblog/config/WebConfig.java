@@ -21,7 +21,7 @@ import com.cafe24.config.web.SecurityConfig;
 @EnableAspectJAutoProxy
 @ComponentScan({"com.cafe24.jblog.controller","com.cafe24.jblog.controller.api"})
 @Import({MVCConfig.class, SecurityConfig.class, FileuploadConfig.class})
-public class WebConfig{
+public class WebConfig {
 	
 	@Bean
 	public ViewResolver viewResolver() {
